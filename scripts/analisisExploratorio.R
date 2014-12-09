@@ -84,3 +84,14 @@ indices <- sample(1:nrow(iris),nTraining)
 particion <- list(training=iris[indices,], test=iris[-indices,])
 lapply(particion,nrow)
 particion$test
+
+
+pb <- winProgressBar(title="Estado del proceso", label="0% terminado", min=0, max=100, initial=0)
+
+for(i in 1:100) {
+  Sys.sleep(0.1) 
+  info <- sprintf("%d%% terminado", round((i/100)*100))
+  setWinProgressBar(pb, i/(100)*100, label=info)
+}
+
+close(pb)
