@@ -5,40 +5,42 @@ if(!is.installed('ggplot2'))
   install.packages('ggplot2')
 library(ggplot2)
 
+qplot(iris$Sepal.Length)
+
 qplot(Sepal.Length, Sepal.Width, data=iris, colour=Species, size=Petal.Width)
 
 # -----------------------------------------------------------------
 # ggplot2: Gráfica de líneas
 # -----------------------------------------------------------------
-qplot(Petal.Length, Sepal.Length, data=iris, color=Species) + 
+qplot(Petal.Length, Sepal.Length, data=iris, color=Species) +
   geom_line()
 
 # -----------------------------------------------------------------
 # ggplot2: Nube de puntos con regresión entre variables
 # -----------------------------------------------------------------
-qplot(Petal.Length, Petal.Width, data = iris, color = Species) + 
+qplot(Petal.Length, Petal.Width, data = iris, color = Species) +
   geom_point() + geom_smooth()
-qplot(elevation, slope, data = 
-        covertype[sample(1:nrow(covertype), 500),], 
-      geom = c("point", "smooth"), color = wilderness_area) + 
+qplot(elevation, slope, data =
+        covertype[sample(1:nrow(covertype), 500),],
+      geom = c("point", "smooth"), color = wilderness_area) +
   theme_bw()
 
 # -----------------------------------------------------------------
 # ggplot2: Curva de densidad
 # -----------------------------------------------------------------
-qplot(elevation, data = covertype, geom = "density", 
+qplot(elevation, data = covertype, geom = "density",
       fill = wilderness_area)
 
 # -----------------------------------------------------------------
 # ggplot2: Composición de múltiples gráficas
 # -----------------------------------------------------------------
-qplot(ClosePrice, sellerRating, data = 
-        ebay[ebay$endDay %in% c('Wed','Thu','Fri') & 
-               ebay$currency != 'US',], 
+qplot(ClosePrice, sellerRating, data =
+        ebay[ebay$endDay %in% c('Wed','Thu','Fri') &
+               ebay$currency != 'US',],
       facets = currency ~ endDay, color=Duration)
 
-qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',], 
-      fill = currency) + geom_bar(stat = 'identity') + 
+qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
+      fill = currency) + geom_bar(stat = 'identity') +
   facet_wrap(~endDay)
 
 
@@ -75,7 +77,7 @@ circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
   xlim = get.cell.meta.data("xlim")
   ylim = get.cell.meta.data("ylim")
   sector.name = get.cell.meta.data("sector.index")
-  
+
   circos.lines(xlim, c(mean(ylim), mean(ylim)), lty = 3)
   for(p in seq(0, 1, by = 0.25)) {
     circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p, cex = 0.4, adj = c(0.5, -0.2), niceFacing = TRUE)
@@ -95,7 +97,7 @@ maxmin <- data.frame(emotions=c(1, 0), corel=c(1, 0), scene=c(1, 0), yeast=c(1, 
 dat <- data.frame(emotions=runif(3,0,1), corel=runif(3,0,1), scene=runif(3,0,1), yeast=runif(3,0,1), ebay=runif(3,0,1))
 dat <- rbind(maxmin,dat)
 
-radarchart(dat, axistype=2, plty=1:3, plwd=2, vlabels=names(dat)) 
+radarchart(dat, axistype=2, plty=1:3, plwd=2, vlabels=names(dat))
 
 # -----------------------------------------------------------------
 # Gráficas en 3D
@@ -137,11 +139,11 @@ sierpinski <- function(points, degree){
   if (degree  > 0){
     p1 <- matrix(c(points[1,], getMid(points[1,], points[2,]),
                    getMid(points[1,], points[3,])), nrow=3, byrow=TRUE)
-    
+
     sierpinski(p1, degree-1)
     p2 <- matrix(c(points[2,], getMid(points[1,], points[2,]),
                    getMid(points[2,], points[3,])), nrow=3, byrow=TRUE)
-    
+
     sierpinski(p2, degree-1)
     p3 <- matrix(c(points[3,], getMid(points[3,], points[2,]),
                    getMid(points[1,], points[3,])), nrow=3, byrow=TRUE)
@@ -157,8 +159,8 @@ turtle_setpos(250, 448)
 
 turtle_init()
 turtle_do({
-  for(j in 1:45) {  
-    for(i in 1:6) { 
+  for(j in 1:45) {
+    for(i in 1:6) {
       turtle_forward(20)
       turtle_right(360/6)
     }
