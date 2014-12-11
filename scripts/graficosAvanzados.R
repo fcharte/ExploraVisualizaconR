@@ -15,6 +15,10 @@ qplot(Sepal.Length, Sepal.Width, data=iris, colour=Species, size=Petal.Width)
 qplot(Petal.Length, Sepal.Length, data=iris, color=Species) +
   geom_line()
 
+qplot(Petal.Length, Sepal.Length, data=iris, color=Species) +
+  geom_line(aes(linetype = Species))
+
+
 # -----------------------------------------------------------------
 # ggplot2: Nube de puntos con regresión entre variables
 # -----------------------------------------------------------------
