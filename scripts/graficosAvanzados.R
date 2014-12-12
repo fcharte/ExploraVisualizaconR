@@ -23,7 +23,15 @@ qplot(Petal.Length, Sepal.Length, data=iris, color=Species) +
 # ggplot2: Nube de puntos con regresión entre variables
 # -----------------------------------------------------------------
 qplot(Petal.Length, Petal.Width, data = iris, color = Species) +
-  geom_point() + geom_smooth()
+  geom_point() + geom_smooth(se=F)  # Solo curva de regresión
+
+qplot(Petal.Length, Petal.Width, data = iris, color = Species) +
+  geom_point() + geom_smooth()  # Curva y error estándar
+
+qplot(Petal.Length, Petal.Width, data = iris, color = Species) +
+  geom_point() + geom_smooth(level = 0.99)  # Curva y error estándar
+
+
 qplot(elevation, slope, data =
         covertype[sample(1:nrow(covertype), 500),],
       geom = c("point", "smooth"), color = wilderness_area) +
