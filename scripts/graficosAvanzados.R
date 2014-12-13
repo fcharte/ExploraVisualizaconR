@@ -40,8 +40,13 @@ qplot(elevation, slope, data =
 # -----------------------------------------------------------------
 # ggplot2: Curva de densidad
 # -----------------------------------------------------------------
-qplot(elevation, data = covertype, geom = "density",
-      fill = wilderness_area)
+ggplot(covertype, aes(x = elevation)) + geom_density()
+
+ggplot(covertype, aes(x = elevation, fill = wilderness_area)) + geom_density()
+
+ggplot(covertype, aes(x = elevation, color = wilderness_area)) + geom_density()
+
+ggplot(covertype, aes(x = elevation, linetype = wilderness_area)) + geom_density()
 
 # -----------------------------------------------------------------
 # ggplot2: Composición de múltiples gráficas
