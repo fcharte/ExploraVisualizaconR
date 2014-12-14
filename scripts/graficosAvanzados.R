@@ -57,10 +57,13 @@ qplot(ClosePrice, sellerRating, data =
       facets = currency ~ endDay, color=Duration)
 
 # La misma grafica anterior expresada de otra forma con ggplot()
-ggplot(ebay[ebay$endDay %in% c('Wed','Thu','Fri') & ebay$currency != 'US',],
+grp <- ggplot(ebay[ebay$endDay %in% c('Wed','Thu','Fri') & ebay$currency != 'US',],
        aes(x = ClosePrice, y = sellerRating)) +
-  geom_point(aes(color = Duration)) +
-  facet_grid(currency ~ endDay)
+  geom_point(aes(color = Duration))
+
+grp + facet_grid(currency ~ endDay) # Formato cuadrícula
+
+grp + facet_wrap(currency ~ endDay) # Una gráfica tras otra
 
 qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
       fill = currency) + geom_bar(stat = 'identity') +
