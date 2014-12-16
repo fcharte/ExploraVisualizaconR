@@ -65,6 +65,10 @@ grp + facet_grid(currency ~ endDay) # Formato cuadrícula
 
 grp + facet_wrap(currency ~ endDay) # Una gráfica tras otra
 
+grp + facet_wrap(currency ~ endDay, ncol = 4) # Cuatro columnas con tantas filas como se precise
+
+grp + facet_wrap(currency ~ endDay, scales = "free") # Escalas X/Y independientes para cada gráfica
+
 qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
       fill = currency) + geom_bar(stat = 'identity') +
   facet_wrap(~endDay)
