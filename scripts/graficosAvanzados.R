@@ -77,10 +77,16 @@ qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
 # -----------------------------------------------------------------
 # Dibujar funciones y polinomios
 # -----------------------------------------------------------------
-curve(sin, from=-4, to=4, col='blue', lty='dotted', lwd=2, ylab='sin(x) vs cos(x)')
-curve(cos, from=-4, to=4, col='cyan', lty='dashed', lwd=2, add=T)
-legend("topleft", c("sin(x)", "cos(x)"), col=c('blue', 'cyan'), lty=c('dotted','dashed'), lwd=2, ncol=2)
-curve(x^3-x+1, lty=2, from=-10, to=10)
+curve(sin, from = -4, to = 4, col = 'blue', lty = 'dotted', lwd = 2,
+      ylab='sin(x) vs cos(x)', xname = "Valores de entrada")
+curve(cos, from = -4, to = 4, col = 'cyan', lty = 'dashed', lwd = 2, add = TRUE)
+legend("topleft", c("sin(x)", "cos(x)"), col = c('blue', 'cyan'),
+       lty = c('dotted','dashed'), lwd = 2, ncol = 2)
+
+curve(abs, from = -10, to = 10)
+
+curve(x^2 - x, lty = 3, lwd = 2, from = -10, to = 10)
+curve(x^3 - x^2 + 1, lty = 2, lwd = 2, from = -10, to = 10, add = TRUE)
 
 # -----------------------------------------------------------------
 # Gráfica tipo 'circos'
