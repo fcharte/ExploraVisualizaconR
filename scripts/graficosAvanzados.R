@@ -77,6 +77,11 @@ qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
 # -----------------------------------------------------------------
 # Dibujar funciones y polinomios
 # -----------------------------------------------------------------
+x <- seq(-10, 10, .25)
+y <- tan(x)
+plot(x, y)
+lines(matrix(c(x,y), ncol = 2))
+
 curve(sin, from = -4, to = 4, col = 'blue', lty = 'dotted', lwd = 2,
       ylab='sin(x) vs cos(x)', xname = "Valores de entrada")
 curve(cos, from = -4, to = 4, col = 'cyan', lty = 'dashed', lwd = 2, add = TRUE)
