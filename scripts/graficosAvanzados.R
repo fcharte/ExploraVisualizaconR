@@ -77,11 +77,24 @@ qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
 # -----------------------------------------------------------------
 # Dibujar funciones y polinomios
 # -----------------------------------------------------------------
+
+# Líneas a partir de función existente (tan)
 x <- seq(-10, 10, .25)
 y <- tan(x)
 plot(x, y)
 lines(matrix(c(x,y), ncol = 2))
 
+# Líneas a partir de función paramétrica
+paramc <- function(t) {
+  x <- cos(t)
+  y <- sin(t)
+  c(x,y)
+}
+mpoints <- matrix(sapply(seq(0,3*pi,0.1), paramc), ncol = 2, byrow = TRUE)
+plot(mpoints)
+lines(mpoints)
+
+# Curva a partir de funciones existentes (sin y cos)
 curve(sin, from = -4, to = 4, col = 'blue', lty = 'dotted', lwd = 2,
       ylab='sin(x) vs cos(x)', xname = "Valores de entrada")
 curve(cos, from = -4, to = 4, col = 'cyan', lty = 'dashed', lwd = 2, add = TRUE)
@@ -90,6 +103,7 @@ legend("topleft", c("sin(x)", "cos(x)"), col = c('blue', 'cyan'),
 
 curve(abs, from = -10, to = 10)
 
+# Curvas a partir de polinomios
 curve(x^2 - x, lty = 3, lwd = 2, from = -10, to = 10)
 curve(x^3 - x^2 + 1, lty = 2, lwd = 2, from = -10, to = 10, add = TRUE)
 
