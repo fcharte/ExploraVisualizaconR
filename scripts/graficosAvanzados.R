@@ -81,16 +81,27 @@ qplot(currency, ClosePrice, data=ebay[ebay$endDay != 'Wed',],
 # Líneas a partir de función existente (tan)
 x <- seq(-10, 10, .25)
 y <- tan(x)
-plot(x, y)
+plot(x, y, type = "n")
 lines(matrix(c(x,y), ncol = 2))
 
 # Líneas a partir de función paramétrica
-paramc <- function(t) {
+circle <- function(t) {
   x <- cos(t)
   y <- sin(t)
   c(x,y)
 }
-mpoints <- matrix(sapply(seq(0,3*pi,0.1), paramc), ncol = 2, byrow = TRUE)
+
+heart <- function(t) {
+  x <- 16 * sin(t)^3
+  y <- 13 * cos(t) - 5 * cos(2*t) - 2 * cos(3*t) - cos(4*t)
+  c(x,y)
+}
+
+mpoints <- matrix(sapply(seq(0,2*pi,0.1), circle), ncol = 2, byrow = TRUE)
+plot(mpoints)
+lines(mpoints)
+
+mpoints <- matrix(sapply(seq(0,2*pi,0.1), heart), ncol = 2, byrow = TRUE)
 plot(mpoints)
 lines(mpoints)
 
