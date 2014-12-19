@@ -124,20 +124,32 @@ curve(x^3 - x^2 + 1, lty = 2, lwd = 2, from = -10, to = 10, add = TRUE)
 if(!is.installed('circlize'))
   install.packages('circlize')
 library(circlize)
+library(mldr)
 
-mat = matrix(sample(1:100, 18, replace = TRUE), 3, 6)
-rownames(mat) = letters[1:3]
-colnames(mat) = LETTERS[1:6]
-rn = rownames(mat)
-cn = colnames(mat)
+labels <- emotions$dataset[ , emotions$labels$index]
+nlabels <- ncol(labels)
+
+# Prepare table with labels as columns and rows
+tbl <- as.data.frame(matrix(0, nrow = nlabels, ncol = nlabels))
+colnames(tbl) <- colnames(labels)
+row.names(tbl) <- colnames(tbl)
+
+for(ind1 in 1:(nlabels-1)) {
+  for(ind2 in (ind1+1):nlabels) {
+    tbl[ind1,ind2] <- sum(labels[,ind1]*labels[,ind2])
+    tbl[ind2,ind1] <- 0
+  }
+}
+
+mat <- as.matrix(tbl)
 
 par(mar = c(1, 1, 1, 1))
 
-circos.par(gap.degree = c(rep(2, nrow(mat)-1), 10, rep(2, ncol(mat)-1), 10))
+circos.par(gap.degree = 3)
 chordDiagram(mat, annotationTrack = "grid", transparency = 0.5,
              preAllocateTracks = list(track.height = 0.1))
 for(si in get.all.sector.index()) {
-  circos.axis(h = "top", labels.cex = 0.3, sector.index = si, track.index = 2)
+  circos.axis(h = "top", labels.cex = 0.6, sector.index = si, track.index = 2)
 }
 circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
   xlim = get.cell.meta.data("xlim")
@@ -146,7 +158,7 @@ circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
 
   circos.lines(xlim, c(mean(ylim), mean(ylim)), lty = 3)
   for(p in seq(0, 1, by = 0.25)) {
-    circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p, cex = 0.4, adj = c(0.5, -0.2), niceFacing = TRUE)
+    circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p, cex = 0.8, adj = c(0.5, -0.2), niceFacing = TRUE)
   }
   circos.text(mean(xlim), 1.4, sector.name, niceFacing = TRUE)
 }, bg.border = NA)
