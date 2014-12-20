@@ -129,19 +129,12 @@ library(mldr)
 labels <- emotions$dataset[ , emotions$labels$index]
 nlabels <- ncol(labels)
 
-# Prepare table with labels as columns and rows
-tbl <- as.data.frame(matrix(0, nrow = nlabels, ncol = nlabels))
+tbl <- sapply(1:nlabels, function(ind1)
+  sapply(1:nlabels, function(ind2)
+    if(ind2 < ind1) sum(labels[,ind1]*labels[,ind2]) else 0
+  ))
 colnames(tbl) <- colnames(labels)
 row.names(tbl) <- colnames(tbl)
-
-for(ind1 in 1:(nlabels-1)) {
-  for(ind2 in (ind1+1):nlabels) {
-    tbl[ind1,ind2] <- sum(labels[,ind1]*labels[,ind2])
-    tbl[ind2,ind1] <- 0
-  }
-}
-
-mat <- as.matrix(tbl)
 
 par(mar = c(1, 1, 1, 1))
 
