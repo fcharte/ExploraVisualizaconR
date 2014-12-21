@@ -142,7 +142,7 @@ circos.par(gap.degree = 3)
 chordDiagram(mat, annotationTrack = "grid", transparency = 0.5,
              preAllocateTracks = list(track.height = 0.1))
 for(si in get.all.sector.index()) {
-  circos.axis(h = "top", labels.cex = 0.6, sector.index = si, track.index = 2)
+  circos.axis(h = "top", labels.cex = 0.3, sector.index = si, track.index = 2)
 }
 circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
   xlim = get.cell.meta.data("xlim")
@@ -151,9 +151,9 @@ circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
 
   circos.lines(xlim, c(mean(ylim), mean(ylim)), lty = 3)
   for(p in seq(0, 1, by = 0.25)) {
-    circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p, cex = 0.8, adj = c(0.5, -0.2), niceFacing = TRUE)
+    circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p, cex = 0.4, adj = c(0.5, -0.2), niceFacing = TRUE)
   }
-  circos.text(mean(xlim), 1.4, sector.name, niceFacing = TRUE)
+  circos.text(mean(xlim), 1.1, sector.name, cex = 0.5, niceFacing = TRUE)
 }, bg.border = NA)
 circos.clear()
 
