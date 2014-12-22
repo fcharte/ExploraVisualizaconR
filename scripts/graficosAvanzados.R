@@ -140,7 +140,7 @@ row.names(tbl) <- colnames(tbl)
 circos.par(gap.degree = 3)
 
 # Diagrama principal
-chordDiagram(mat, annotationTrack = "grid", transparency = 0.5,
+chordDiagram(tbl, annotationTrack = "grid", transparency = 0.5,
              preAllocateTracks = list(track.height = 0.1))
 
 # Un eje sobre cada arco
