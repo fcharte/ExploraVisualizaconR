@@ -124,11 +124,11 @@ curve(x^3 - x^2 + 1, lty = 2, lwd = 2, from = -10, to = 10, add = TRUE)
 if(!is.installed('circlize'))
   install.packages('circlize')
 library(circlize)
-library(mldr)
+library(mldr)  # Paquete necesario para usar el dataset emotions
 
+# Preparar en tbl el conteo de muestras en que aparecen conjuntamente cada pareja de etiquetas
 labels <- emotions$dataset[ , emotions$labels$index]
 nlabels <- ncol(labels)
-
 tbl <- sapply(1:nlabels, function(ind1)
   sapply(1:nlabels, function(ind2)
     if(ind2 < ind1) sum(labels[,ind1]*labels[,ind2]) else 0
@@ -136,14 +136,19 @@ tbl <- sapply(1:nlabels, function(ind1)
 colnames(tbl) <- colnames(labels)
 row.names(tbl) <- colnames(tbl)
 
-par(mar = c(1, 1, 1, 1))
-
+# Separación entre cada arco y el siguiente
 circos.par(gap.degree = 3)
+
+# Diagrama principal
 chordDiagram(mat, annotationTrack = "grid", transparency = 0.5,
              preAllocateTracks = list(track.height = 0.1))
+
+# Un eje sobre cada arco
 for(si in get.all.sector.index()) {
   circos.axis(h = "top", labels.cex = 0.3, sector.index = si, track.index = 2)
 }
+
+# Por encima de cada arco una línea relativa (con porcentajes) y el nombre de cada etiqueta
 circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
   xlim = get.cell.meta.data("xlim")
   ylim = get.cell.meta.data("ylim")
@@ -155,7 +160,8 @@ circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
   }
   circos.text(mean(xlim), 1.1, sector.name, cex = 0.5, niceFacing = TRUE)
 }, bg.border = NA)
-circos.clear()
+
+circos.clear()  # Liberación de datos asociados a la gráfica
 
 # -----------------------------------------------------------------
 # Gráfica tipo 'spider'
