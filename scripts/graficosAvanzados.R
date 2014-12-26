@@ -128,11 +128,13 @@ library(circlize)
 # Ejemplo simple con supuestos datos migratorios
 
 migracion <- data.frame(Spain = c(35, 12, 67),
-                        France = c(17, 23, 38),
-                        Italy = c(12, 47, 32))
+                        France = c(17, 13, 28),
+                        Italy = c(42, 17, 32))
 rownames(migracion) <- c("Finland", "Poland", "Denmark")
 
 chordDiagram(as.matrix(migracion))
+
+circos.clear()  # Liberación de datos asociados a la gráfica
 
 # Ejemplo con datasets multietiqueta
 
