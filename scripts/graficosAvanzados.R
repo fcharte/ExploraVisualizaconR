@@ -124,6 +124,18 @@ curve(x^3 - x^2 + 1, lty = 2, lwd = 2, from = -10, to = 10, add = TRUE)
 if(!is.installed('circlize'))
   install.packages('circlize')
 library(circlize)
+
+# Ejemplo simple con supuestos datos migratorios
+
+migracion <- data.frame(Spain = c(35, 12, 67),
+                        France = c(17, 23, 38),
+                        Italy = c(12, 47, 32))
+rownames(migracion) <- c("Finland", "Poland", "Denmark")
+
+chordDiagram(as.matrix(migracion))
+
+# Ejemplo con datasets multietiqueta
+
 library(mldr)  # Paquete necesario para usar el dataset emotions
 
 # Preparar en tbl el conteo de muestras en que aparecen conjuntamente cada pareja de etiquetas
@@ -156,7 +168,8 @@ circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
 
   circos.lines(xlim, c(mean(ylim), mean(ylim)), lty = 3)
   for(p in seq(0, 1, by = 0.25)) {
-    circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p, cex = 0.4, adj = c(0.5, -0.2), niceFacing = TRUE)
+    circos.text(p*(xlim[2] - xlim[1]) + xlim[1], mean(ylim), p,
+                cex = 0.4, adj = c(0.5, -0.2), niceFacing = TRUE)
   }
   circos.text(mean(xlim), 1.1, sector.name, cex = 0.5, niceFacing = TRUE)
 }, bg.border = NA)
