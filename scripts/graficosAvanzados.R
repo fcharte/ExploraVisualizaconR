@@ -136,6 +136,7 @@ chordDiagram(as.matrix(migracion))
 circos.clear()  # Liberación de datos asociados a la gráfica
 
 # Gráfica direccional
+par(mar=c(0,0,0,0))
 chordDiagram(as.matrix(migracion),
              directional = TRUE,
              annotationTrack = "grid",
