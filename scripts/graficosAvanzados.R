@@ -133,8 +133,17 @@ migracion <- data.frame(Spain = c(35, 12, 67),
 rownames(migracion) <- c("Finland", "Poland", "Denmark")
 
 chordDiagram(as.matrix(migracion))
+circos.clear()  # Liberación de datos asociados a la gráfica
+
+# Gráfica direccional
+chordDiagram(as.matrix(migracion),
+             directional = TRUE,
+             annotationTrack = "grid",
+             preAllocateTracks = list(track.height = 0.2, track.height = 0.2)
+)
 
 circos.clear()  # Liberación de datos asociados a la gráfica
+
 
 # Ejemplo con datasets multietiqueta
 
