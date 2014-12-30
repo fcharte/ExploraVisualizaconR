@@ -194,12 +194,32 @@ circos.clear()  # Liberación de datos asociados a la gráfica
 if(!is.installed('fmsb'))
   install.packages('fmsb')
 library('fmsb')
-set.seed(4242)
-maxmin <- data.frame(emotions=c(1, 0), corel=c(1, 0), scene=c(1, 0), yeast=c(1, 0), ebay=c(1, 0))
-dat <- data.frame(emotions=runif(3,0,1), corel=runif(3,0,1), scene=runif(3,0,1), yeast=runif(3,0,1), ebay=runif(3,0,1))
-dat <- rbind(maxmin,dat)
 
-radarchart(dat, axistype=2, plty=1:3, plwd=2, vlabels=names(dat))
+set.seed(4242)
+maxmin <- data.frame(
+  C4.5 = c(1, 0),
+  SVM  = c(1, 0),
+  kNN  = c(1, 0),
+  ANN  = c(1, 0),
+  CAR  = c(1, 0)
+  )
+dat <- data.frame(
+  C4.5 = runif(3, 0, 1),
+  SVM  = runif(3, 0, 1),
+  kNN  = runif(3, 0, 1),
+  ANN  = runif(3, 0, 1),
+  CAR  = runif(3, 0, 1)
+  )
+dat <- rbind(maxmin, dat)
+
+radarchart(dat, axistype = 2,
+           plty = 1:3, plwd = 2,
+           pcol = c('black', 'green', 'red'),
+           vlabels = names(dat)
+           )
+legend("bottomleft", c("precision", "accuracy", "recall"),
+       col = c('black', 'green', 'red'),
+       lty = 1:3, lwd = 2, ncol = 3)
 
 # -----------------------------------------------------------------
 # Gráficas en 3D
