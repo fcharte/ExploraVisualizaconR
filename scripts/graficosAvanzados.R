@@ -195,14 +195,8 @@ if(!is.installed('fmsb'))
   install.packages('fmsb')
 library('fmsb')
 
+# Preparamos los datos de entrada
 set.seed(4242)
-maxmin <- data.frame(
-  C4.5 = c(1, 0),
-  SVM  = c(1, 0),
-  kNN  = c(1, 0),
-  ANN  = c(1, 0),
-  CAR  = c(1, 0)
-  )
 dat <- data.frame(
   C4.5 = runif(3, 0, 1),
   SVM  = runif(3, 0, 1),
@@ -210,8 +204,24 @@ dat <- data.frame(
   ANN  = runif(3, 0, 1),
   CAR  = runif(3, 0, 1)
   )
+
+# Cada eje tendrá una escala propia
+radarchart(dat, maxmin = FALSE)
+
+# Fijamos el máximo y mínimo para cada variable
+maxmin <- data.frame(
+  C4.5 = c(1, 0),
+  SVM  = c(1, 0),
+  kNN  = c(1, 0),
+  ANN  = c(1, 0),
+  CAR  = c(1, 0)
+)
 dat <- rbind(maxmin, dat)
 
+# Escalas homogéneas para todas las variables
+radarchart(dat)
+
+# Personalización de tipos de línea y otros parametros
 radarchart(dat, axistype = 2,
            plty = 1:3, plwd = 2,
            pcol = c('black', 'green', 'red'),
