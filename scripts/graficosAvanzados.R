@@ -219,7 +219,7 @@ maxmin <- data.frame(
 dat <- rbind(maxmin, dat)
 
 # Escalas homogéneas para todas las variables
-radarchart(dat)
+radarchart(dat, axistype = 4, seg = 7)
 
 # Personalización de tipos de línea y otros parametros
 radarchart(dat, axistype = 2,
