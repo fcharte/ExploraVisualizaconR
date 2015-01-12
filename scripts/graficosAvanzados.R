@@ -242,19 +242,35 @@ legend("bottomleft", c("precision", "accuracy", "recall"),
 if(!is.installed('scatterplot3d'))
   install.packages('scatterplot3d')
 library('scatterplot3d')
-z <- seq(-10, 10, 0.01)
-x <- cos(z)
-y <- sin(z)
-scatterplot3d(x, y, z, highlight.3d = TRUE, col.axis = "blue",
-              col.grid = "lightblue", main = "Helix", pch = 20)
+
+# Representación de iris, ancho y alto de pétalo, ancho de sépalo y especie,
+# en una grafica de  puntos 3D
+scatterplot3d(iris$Sepal.Width,
+              iris$Petal.Length,
+              iris$Petal.Width,
+              color = as.numeric(iris$Species),
+              pch = 20, angle = 15)
+
+# Secuencia de puntos en el eje X
+x <- seq(-10, 10, 0.01)
+y <- sin(x) # Cálculo de las posiciones
+z <- cos(x)*sin(x) # en Y y Z
+scatterplot3d(x, y, z,
+              highlight.3d = TRUE,
+              col.axis = "blue",
+              col.grid = "lightblue",
+              pch = 20, angle = -30)
 
 if(!is.installed('lattice'))
   install.packages('lattice')
 library('lattice')
 
-z <- matrix(rnorm(625)+574,nrow=25)
-z <- z + seq(50, 1, length=25)
-persp(z, phi = 30, theta = 30,  zlim=c(550,650),xlab = "X", ylab = "Y", zlab='Z', main = "Elevación del terreno")
+z <- matrix(rnorm(625) + 574, nrow = 25)
+z <- z + seq(50, 1, length = 25)
+persp(z, phi = 30, theta = 30,
+      zlim = c(550,650),
+      xlab = "X", ylab = "Y", zlab='Z',
+      main = "Elevación del terreno")
 
 
 # -----------------------------------------------------------------
