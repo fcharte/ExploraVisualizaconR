@@ -245,9 +245,11 @@ library('scatterplot3d')
 
 # Representación de iris, ancho y alto de pétalo, ancho de sépalo y especie,
 # en una grafica de  puntos 3D
-scatterplot3d(iris$Sepal.Width,
-              iris$Petal.Length,
-              iris$Petal.Width,
+datos <- data.frame(AnchoSepalo = iris$Sepal.Width,
+                    LargoPetalo = iris$Petal.Length,
+                    AnchoPetalo = iris$Petal.Width)
+
+scatterplot3d(datos, type = "h",
               color = as.numeric(iris$Species),
               pch = 20, angle = 15)
 
