@@ -263,6 +263,7 @@ scatterplot3d(x, y, z,
               col.grid = "lightblue",
               pch = 20, angle = -30)
 
+# Dibujo de una superficie con lattice
 if(!is.installed('lattice'))
   install.packages('lattice')
 library('lattice')
@@ -270,7 +271,8 @@ library('lattice')
 z <- matrix(rnorm(625) + 574, nrow = 25)
 z <- z + seq(50, 1, length = 25)
 persp(z, phi = 30, theta = 30,
-      zlim = c(550,650),
+      shade = 0.5, col = heat.colors(6),
+      zlim = c(550,650), ticktype = "detailed",
       xlab = "X", ylab = "Y", zlab='Z',
       main = "Elevación del terreno")
 
