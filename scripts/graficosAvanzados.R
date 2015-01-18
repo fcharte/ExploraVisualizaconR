@@ -277,6 +277,9 @@ persp(z, phi = 30, theta = 30,
       main = "Elevación del terreno")
 
 
+# Representación de nube de puntos 3D con lattice
+cloud(iris$Petal.Width ~ iris$Petal.Length * iris$Sepal.Width, col = iris$Species)
+
 # -----------------------------------------------------------------
 # Gráficos de tortuga (Logo)
 # -----------------------------------------------------------------
