@@ -278,8 +278,15 @@ persp(z, phi = 30, theta = 30,
 
 
 # Representación de nube de puntos 3D con lattice
-cloud(iris$Petal.Width ~ iris$Petal.Length * iris$Sepal.Width, col = iris$Species)
-
+cloud(iris$Petal.Width ~
+        iris$Petal.Length *
+        iris$Sepal.Width,
+      col = rainbow(3, alpha = 0.5),
+      pch = 19, cex = 1.5,
+      groups = iris$Species,
+      auto.key = list(space="top", columns = 3, points = FALSE,
+                      title="Specie", cex.title = 1.5,
+                      col = rainbow(3)))
 # -----------------------------------------------------------------
 # Gráficos de tortuga (Logo)
 # -----------------------------------------------------------------
