@@ -5,11 +5,15 @@ if(!is.installed('xtable'))
   install.packages('xtable')
 library('xtable')
 
-# Preparar una tabla por cada categoría existente. Cada una podria escribirse en un archivo distinto e importarse desde el documento principal
+# Preparar una tabla por cada categoría existente.
 tabla <- lapply(split(ebay[,-1], ebay$Category), xtable)
-print(tabla$Books[1:5,], digits=2, include.rownames=FALSE)
-print(tabla$Books[1:5,], tabular.environment = "longtable", floating = FALSE)
-strwrap(print(tabla$Books[1:5,], type='HTML'))
+str(tabla) # Comprobamos la estructura de las tablas que hemos obtenido
+
+print(tabla$Books[1:5,], digits=2, include.rownames=FALSE) # Tabla de una categoría sin nombres de fila
+print(tabla$Books[1:5,], tabular.environment = "longtable", floating = FALSE) # Cambiando el entorno a longtable
+strwrap(print(tabla$Books[1:5,], type='HTML')) # Generación de la tabla en HTML
+
+# Cada tabla podria escribirse en un archivo distinto e importarse desde el documento principal
 
 # -----------------------------------------------------------------
 # Exportación de resultados: paquete Hmisc
