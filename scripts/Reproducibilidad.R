@@ -14,6 +14,10 @@ print(tabla$Books[1:5,], tabular.environment = "longtable", floating = FALSE) # 
 strwrap(print(tabla$Books[1:5,], type='HTML')) # Generación de la tabla en HTML
 
 # Cada tabla podria escribirse en un archivo distinto e importarse desde el documento principal
+print(tabla$Books[1:5,], digits=2, include.rownames=FALSE, file = "tablaBooks.tex")
+print(tabla$Books[1:5,], digits=2, include.rownames=FALSE, type = "HTML", file = "tablaBooks.html")
+file.show("tablaBooks.tex") # Mostrar los archivos en la aplicación asociada por defecto
+file.show("tablaBooks.html")
 
 # -----------------------------------------------------------------
 # Exportación de resultados: paquete Hmisc
